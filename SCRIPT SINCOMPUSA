@@ -286,25 +286,26 @@ CREATE OR REPLACE PROCEDURE ACTUALIZARUSUARIO(
 ) AS
     EXISTEUSUARIO NUMBER;
 
--- Crear la tabla Reportes con el formato deseado para Fecha_Modificacion
-CREATE TABLE Reportes (
-    Id_Producto VARCHAR2(50),
-    Nombre VARCHAR2(100),
-    Cantidad NUMBER,
-    Precio NUMBER,
-    Categoria VARCHAR2(50),
-    Proveedor VARCHAR2(50),
-    Estado VARCHAR2(50),
-    Fecha_Modificacion TIMESTAMP
-);
-
--- Crear un formato personalizado para la columna Fecha_Modificacion
-CREATE OR REPLACE TRIGGER reportes_formato_fecha
-BEFORE INSERT ON Reportes
-FOR EACH ROW
 BEGIN
-    :NEW.Fecha_Modificacion := TO_TIMESTAMP(TO_CHAR(SYSTIMESTAMP, 'DD-MON-YY HH.MI.SS PM'), 'DD-MON-YY HH:MI:SS PM');
-END;
+    -- Verificar si el nuevo nombre de usuario ya existe
+    SELECT COUNT(*)
+    INTO EXISTEUSUARIO
+    FROM USUARIOS
+    WHERE NOMBREUSUARIO = P_NUEVONOMBREUSUARIO AND NOMBREUSUARIO <> P_NOMBREUSUARIO;
+
+    -- Si el nuevo nombre de usuario ya existe, mostrar un mensaje de error
+    IF EXISTEUSUARIO > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('El nuevo nombre de usuario ya existe. Por favor, elija otro.');
+    ELSE
+        -- Si no existe, actualizar el usuario
+        UPDATE USUARIOS
+        SET NOMBREUSUARIO = P_NUEVONOMBREUSUARIO, CONTRASENA = P_NUEVACONTRASENA
+        WHERE NOMBREUSUARIO = P_NOMBREUSUARIO;
+
+        DBMS_OUTPUT.PUT_LINE('Usuario actualizado correctamente.');
+    END IF;
+
+END ACTUALIZARUSUARIO;
 /
 
 -- Crear la tabla Reportes con el formato deseado para Fecha_Modificacion
