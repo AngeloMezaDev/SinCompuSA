@@ -279,6 +279,35 @@ END;
 /
 select *from usuarios
 
+CREATE OR REPLACE PROCEDURE ACTUALIZARUSUARIO(
+    P_NOMBREUSUARIO IN VARCHAR2,
+    P_NUEVONOMBREUSUARIO IN VARCHAR2,
+    P_NUEVACONTRASENA IN VARCHAR2
+) AS
+    EXISTEUSUARIO NUMBER;
+
+BEGIN
+    -- Verificar si el nuevo nombre de usuario ya existe
+    SELECT COUNT(*)
+    INTO EXISTEUSUARIO
+    FROM USUARIOS
+    WHERE NOMBREUSUARIO = P_NUEVONOMBREUSUARIO AND NOMBREUSUARIO <> P_NOMBREUSUARIO;
+
+    -- Si el nuevo nombre de usuario ya existe, mostrar un mensaje de error
+    IF EXISTEUSUARIO > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('El nuevo nombre de usuario ya existe. Por favor, elija otro.');
+    ELSE
+        -- Si no existe, actualizar el usuario
+        UPDATE USUARIOS
+        SET NOMBREUSUARIO = P_NUEVONOMBREUSUARIO, CONTRASENA = P_NUEVACONTRASENA
+        WHERE NOMBREUSUARIO = P_NOMBREUSUARIO;
+
+        DBMS_OUTPUT.PUT_LINE('Usuario actualizado correctamente.');
+    END IF;
+
+END ACTUALIZARUSUARIO;
+/
+
 -- Crear la tabla Reportes con el formato deseado para Fecha_Modificacion
 CREATE TABLE Reportes (
     Id_Producto VARCHAR2(50),
@@ -301,4 +330,20 @@ END;
 /
 
 
+
+select *from reportes
+
+-- Crear un procedimiento almacenado para eliminar un bodeguero 
+CREATE OR REPLACE PROCEDURE EliminarBodeguero(
+    p_IdBodeguero IN VARCHAR2
+) AS
+BEGIN
+    -- Eliminar el proveedor con el ID especificado
+    DELETE FROM USUARIOS 
+    WHERE Id = p_IdBodeguero;
+    -- Confirmar la eliminación
+    COMMIT;
+END;
+
+select *from REPORTES
 
