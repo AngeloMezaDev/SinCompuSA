@@ -83,16 +83,13 @@ public class frmMiPerfilBodeguero extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Usuario");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Contraseña");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Confirmar Contraseña");
 
         lblNombreUsuario.setEnabled(false);
@@ -107,8 +104,13 @@ public class frmMiPerfilBodeguero extends javax.swing.JFrame {
 
         lblNuevoUsuario.setBackground(new java.awt.Color(0, 0, 0));
         lblNuevoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNuevoUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblNuevoUsuario.setText("Nuevo Nombre de Usuario");
+
+        lblNuevoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lblNuevoNombreKeyTyped(evt);
+            }
+        });
 
         checkBoxUsuario.setText("Editar Usuario");
         checkBoxUsuario.addItemListener(new java.awt.event.ItemListener() {
@@ -196,7 +198,6 @@ public class frmMiPerfilBodeguero extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MI PERFIL");
         jLabel2.setToolTipText("");
@@ -355,6 +356,15 @@ public class frmMiPerfilBodeguero extends javax.swing.JFrame {
             lblNuevoNombre.setText(bodeguero.obtenerUsuario());
         }
     }//GEN-LAST:event_checkBoxUsuarioItemStateChanged
+
+    private void lblNuevoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblNuevoNombreKeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetterOrDigit(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (lblNombreUsuario.getText().trim().length() >= 25){
+            evt.consume();
+        }  
+    }//GEN-LAST:event_lblNuevoNombreKeyTyped
 
     /**
      * @param args the command line arguments

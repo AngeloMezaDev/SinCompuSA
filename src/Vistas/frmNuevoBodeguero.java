@@ -160,23 +160,18 @@ public class frmNuevoBodeguero extends javax.swing.JFrame {
         fondoPanel.setBackground(new java.awt.Color(204, 204, 204));
         fondoPanel.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Id");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nombre");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Dirección");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Teléfono");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Email");
 
@@ -185,26 +180,63 @@ public class frmNuevoBodeguero extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("SECCIÓN PARA AÑADIR UN NUEVO BODEGUERO");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
+
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contraseña");
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Usuario");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Confirmar Contraseña");
+
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
+
+        txtConfirmarContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtConfirmarContrasenaKeyTyped(evt);
+            }
+        });
 
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);
+            }
+        });
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyTyped(evt);
             }
         });
 
@@ -441,6 +473,64 @@ public class frmNuevoBodeguero extends javax.swing.JFrame {
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContrasenaActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetter(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (txtNombre.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetterOrDigit(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (txtDireccion.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char c=evt.getKeyChar();
+        if(!Character.isDigit(c) || txtTelefono.getText().trim().length() >= 10){
+            evt.consume();//bloquea la entrada de datos
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        char c=evt.getKeyChar();
+        if (!Character.isLetterOrDigit(c) && c != '@' && c != '-' && c != '_'
+                && c != '#' && c != '*' && c != '.') {//si es diferente a estos caracteres entra a la condición
+            evt.consume();//bloquea la entrada de datos
+        } else if ( txtEmail.getText().trim().length() >= 25){
+            evt.consume();//bloquea la entrada de datos
+        }
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetterOrDigit(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (txtUsuario.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyTyped
+        char c = evt.getKeyChar();
+        if (txtContrasena.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyTyped
+
+    private void txtConfirmarContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaKeyTyped
+        char c = evt.getKeyChar();
+        if (txtConfirmarContrasena.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtConfirmarContrasenaKeyTyped
 
     /**
      * @param args the command line arguments

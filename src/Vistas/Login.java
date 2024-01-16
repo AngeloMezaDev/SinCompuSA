@@ -78,6 +78,11 @@ public class Login extends javax.swing.JFrame {
                 txtUsuarioFocusLost(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,6 +96,11 @@ public class Login extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtContrasenaFocusLost(evt);
+            }
+        });
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyTyped(evt);
             }
         });
 
@@ -308,6 +318,22 @@ public class Login extends javax.swing.JFrame {
             txtContrasena.setForeground(new Color(153, 153, 153)); // Cambiar el color del texto si lo deseas
         }
     }//GEN-LAST:event_txtContrasenaFocusLost
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isLetterOrDigit(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (txtUsuario.getText().trim().length() >= 25){
+            evt.consume();
+        }  
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyTyped
+        char c = evt.getKeyChar();
+        if (txtContrasena.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyTyped
 
     // Contador para realizar seguimiento de los intentos fallidos
     private int intentosFallidos = 0;

@@ -205,23 +205,18 @@ public class frmModificarProducto extends javax.swing.JFrame {
         fondoPanel.setBackground(new java.awt.Color(204, 204, 204));
         fondoPanel.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Id");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nombre");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cantidad");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Precio");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Categoria");
 
@@ -230,9 +225,20 @@ public class frmModificarProducto extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jsCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jsCantidad.setEnabled(false);
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una categoría...", "Metales", "Madera" }));
         cmbCategoria.setToolTipText("");
@@ -242,7 +248,6 @@ public class frmModificarProducto extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("SECCIÓN PARA MODIFICAR UN PRODUCTO");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Proveedor");
 
@@ -468,6 +473,24 @@ public class frmModificarProducto extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c=evt.getKeyChar();
+        if(!Character.isLetter(c) && !Character.isSpaceChar(c)){
+            evt.consume();//bloquea la entrada de datos
+        } else if (txtNombre.getText().trim().length() >= 25){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        char c=evt.getKeyChar();
+        if(c!='.'){
+            if(!Character.isDigit(c) || txtPrecio.getText().trim().length() >= 9){
+                evt.consume();//bloquea la entrada de datos
+            }
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     /**
      * @param args the command line arguments
