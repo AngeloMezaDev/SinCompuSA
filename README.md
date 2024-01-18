@@ -27,3 +27,12 @@ Nota: Se recomienda la versión 1.4 para evitar inconvenientes posteriores.
 Nota: Se recomienda la versión 5.2.3.zip para evitar inconvenientes posteriores.
 
 		Link de descarga: https://archive.apache.org/dist/poi/release/bin/ 
+
+*Nota:* 
+Credenciales de ingreso:
+
+	Usuario:angelo		 Contraseña:angelo123       *Rol: Administrador*
+ 	Usuario:juan		 Contraseña:juan123         *Rol: Bodeguero*
+	Usuario:justin		 Contraseña:justin123       *Rol: Bodeguero*
+ 
+}
