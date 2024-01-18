@@ -1,4 +1,6 @@
-Instalación de SinCompu SA
+**Instalación de SinCompu SA***
+
+
 •	El primer paso es instalar ORACLE – SQL DEVELOPER (Opcional).
 Link de descarga: https://www.oracle.com/database/sqldeveloper/ , para poder ejecutar la base de datos que se adjunta en el presente repositorio.
 Lo siguiente será contar con Netbeans a partir de la versión 12 en adelante. Para ello se adjunta el link de descarga, link de descarga: https://netbeans.apache.org/front/main/download/nb15/ 
